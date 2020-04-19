@@ -213,7 +213,7 @@ impl<'a, H, D, R> StatefulWidget for Table<'a, H, R>
 where
     H: Iterator,
     H::Item: Display,
-    D: Iterator,
+    D: Iterator + Clone,
     D::Item: Display,
     R: Iterator<Item = Row<D>>,
 {
