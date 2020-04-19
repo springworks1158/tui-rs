@@ -326,7 +326,7 @@ where
                     Row::Data(ref d) => (d, default_style, blank_symbol.as_ref()),
                     Row::StyledData(ref d, s) => (d, s, blank_symbol.as_ref()),
                 };
-                //let data = (*data).clone();
+                let data = (*data).clone();
                 x = table_area.left();
                 for (c, (w, elt)) in solved_widths.iter().zip(data).enumerate() {
                     let s = if c == 0 {
