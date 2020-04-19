@@ -318,13 +318,13 @@ where
             };
             for (i, row) in self.rows.skip(state.offset).take(remaining).enumerate() {
                 let (data, style, symbol) = match row {
-                    Row::Data(ref d) | Row::StyledData(d, _)
+                    Row::Data(ref d) | Row::StyledData(&d, _)
                         if Some(i) == state.selected.map(|s| s - state.offset) =>
                     {
                         (d, highlight_style, highlight_symbol)
                     }
-                    Row::Data(d) => (d, default_style, blank_symbol.as_ref()),
-                    Row::StyledData(d, s) => (d, s, blank_symbol.as_ref()),
+                    Row::Data(ref d) => (&d, default_style, blank_symbol.as_ref()),
+                    Row::StyledData(ref d, s) => (&d, s, blank_symbol.as_ref()),
                 };
                 x = table_area.left();
                 for (c, (w, elt)) in solved_widths.iter().zip(data).enumerate() {
