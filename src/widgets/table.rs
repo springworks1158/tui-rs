@@ -318,10 +318,10 @@ where
             };
             for (i, row) in self.rows.skip(state.offset).take(remaining).enumerate() {
                 let (data, style, symbol) = match row {
-                    Row::Data(ref d) | Row::StyledData(&d, _)
+                    Row::Data(ref d) | Row::StyledData(ref d, _)
                         if Some(i) == state.selected.map(|s| s - state.offset) =>
                     {
-                        (d, highlight_style, highlight_symbol)
+                        (&d, highlight_style, highlight_symbol)
                     }
                     Row::Data(ref d) => (&d, default_style, blank_symbol.as_ref()),
                     Row::StyledData(ref d, s) => (&d, s, blank_symbol.as_ref()),
